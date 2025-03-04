@@ -1,0 +1,287 @@
+body {
+  background: white;
+  font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
+    helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+  color: black;
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+h1 {
+  font-size: 3.5rem;
+}
+
+input {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  font-size: 1rem;
+  background: #888;
+  padding: 0.8rem;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  background-color: rgb(21, 96, 88);
+}
+
+form {
+  margin-top: -10%;
+  margin-bottom: 7%;
+  width: 85%;
+}
+
+#navButt {
+  color: turquoise;
+  padding: 0.1%;
+  
+}
+
+#navButt:hover {
+  color: rgb(0, 255, 238);
+}
+
+.post-input {
+  color: rgb(21, 96, 88);
+  font-weight: 200;
+  font-size: 15px;
+  border-radius: 5px;
+  line-height: 22px;
+  background-color: transparent;
+  border: 2px solid rgb(21, 96, 88);
+  transition: all 0.3s;
+  padding: 13px;
+  margin-bottom: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: 0;
+}
+
+.post-input:focus {
+  border: 2px solid turquoise;
+}
+
+textarea {
+  height: 150px;
+  line-height: 150%;
+  margin-top: 5%;
+}
+
+[type="submit"] {
+  width: 20%;
+  background: rgb(21, 96, 88);
+  border-radius: 5px;
+  border: 0;
+  cursor: pointer;
+  color: white;
+  font-size: 24px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  transition: all 0.3s;
+  margin-top: -4px;
+  font-weight: 700;
+}
+
+[type="submit"]:hover {
+  background: turquoise;
+}
+
+.recent-blogs {
+  width: 80%;
+  margin-bottom: -5%;
+  margin-top: -5%;
+  color: rgb(21, 96, 88);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.blogs {
+  width: 95%;
+  margin-top: -5%;
+  color: rgb(21, 96, 88);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.blogList {
+  width: 100%;
+  list-style-type: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  align-items: center;
+  border: 1px solid #e1e8ed;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #f5f8fa;
+  transition: background-color 0.3s, white-space 0.3s;
+}
+
+.blogList:hover {
+  background-color: #e8f5fd;
+  white-space: normal;
+}
+
+.blogBrowse {
+  width: 100%;
+  list-style-type: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  align-items: center;
+  border: 1px solid #e1e8ed;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-color: #f5f8fa;
+  transition: background-color 0.3s, white-space 0.3s;
+}
+
+.blogBrowse:hover {
+  background-color: #e8f5fd;
+  white-space: normal;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  background-color: rgb(21, 96, 88);
+}
+
+p {
+  color: white;
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.copyright {
+  color: white;
+}
+
+.greenBtn {
+  width: 4%;
+  height: 3%;
+  background: rgb(21, 96, 88);
+  border-radius: 5px;
+  border: 0;
+  cursor: pointer;
+  color: white;
+  font-size: 0.6rem;
+  padding: 0.3rem;
+  transition: all 0.3s;
+  margin-top: -4px;
+  font-weight: 700;
+  display: none;
+}
+
+.greenBtn:hover {
+  background: turquoise;
+}
+
+.redBtn {
+  width: 4%;
+  height: 3%;
+  background: red;
+  border-radius: 5px;
+  border: 0;
+  cursor: pointer;
+  color: white;
+  font-size: 0.6rem;
+  padding: 0.3rem;
+  transition: all 0.3s;
+  margin-top: -4px;
+  font-weight: 700;
+  display: none;
+}
+
+.redBtn:hover {
+  background: darkred;
+}
+
+.blogList:hover .greenBtn, .blogList:hover .redBtn,
+.blogBrowse:hover .greenBtn, .blogBrowse:hover .redBtn {
+  display: inline-block;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  [type="submit"] {
+    width: 30%;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 992px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  [type="submit"] {
+    width: 40%;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  [type="submit"] {
+    width: 50%;
+    font-size: 16px;
+  }
+
+  .greenBtn, .redBtn {
+    width: 6%;
+    height: 5%;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 576px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  [type="submit"] {
+    width: 60%;
+    font-size: 14px;
+  }
+
+  .greenBtn, .redBtn {
+    width: 8%;
+    height: 7%;
+    font-size: 1rem;
+  }
+}

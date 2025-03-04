@@ -1,0 +1,63 @@
+<%- include("partials/header.ejs") %> <!-- Include the header partial -->
+
+<!-- Form for submitting a new post -->
+<form action="/submit" method="POST">
+  <textarea name="postText" class="post-input" placeholder="What is on your mind?"></textarea> <!-- Textarea for post input -->
+  <input type="submit" value="Post"/> <!-- Submit button -->
+</form>
+
+<!-- Section for displaying recent blogs -->
+<div class="recent-blogs">
+  <h2>Recent Blogs</h2>
+  <ul>
+    <li class="blogList">
+      <!-- Check if there is a recent blog post -->
+      <% if (locals.lBlog && locals.lBlog.trim().length > 0) { %>
+      <%= locals.lBlog %> <!-- Display the recent blog post -->
+      <% } else { %>
+      <!-- Display placeholder text if no recent blog post is available -->
+      Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+      <% } %>
+    </li>
+    <li class="blogList">
+      <!-- Static placeholder text for another blog post -->
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    </li>
+  </ul>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const textarea = document.querySelector(".post-input"); // Select the textarea element
+    const form = textarea.closest("form"); // Select the closest form element
+    const wordCount = document.createElement("div"); // Create a div for word count
+    wordCount.style.position = "absolute";
+    wordCount.style.bottom = "10px";
+    wordCount.style.right = "10px";
+    wordCount.style.color = "green";
+    form.style.position = "relative";
+    form.appendChild(wordCount); // Append the word count div to the form
+
+    const updateWordCount = () => {
+      const textLength = textarea.value.length; // Get the length of the textarea value
+      const remaining = 1100 - textLength; // Calculate remaining characters
+      wordCount.textContent = `${remaining}`; // Update the word count text
+      wordCount.style.color = remaining < 0 ? "red" : "green"; // Change color based on remaining characters
+    };
+
+    textarea.addEventListener("input", updateWordCount); // Update word count on input
+    updateWordCount(); // Initial word count update
+
+    form.addEventListener("submit", function(event) {
+      if (textarea.value.length > 1100) { // Check if the post exceeds the character limit
+        event.preventDefault(); // Prevent form submission
+        alert("Your post exceeds the 1100 character limit."); // Alert the user
+      } else if (textarea.value.trim().length === 0) { // Check if the post is empty
+        event.preventDefault(); // Prevent form submission
+        alert("Your post cannot be empty."); // Alert the user
+      }
+    });
+  });
+</script>
+
+<%- include("partials/footer.ejs") %> <!-- Include the footer partial -->

@@ -1,0 +1,116 @@
+<!-- Include the header partial -->
+<%- include("partials/header.ejs") %>
+
+<div class="blogs">
+  <!-- Section for displaying blogs -->
+  <h2>Blogs</h2>
+  <ul>
+    <li class="blogBrowse" data-blog="<%= locals.lBlog %>">
+      <!-- Check if there is a blog content to display -->
+      <% if (locals.lBlog && locals.lBlog.trim().length > 0) { %>
+      <%= locals.lBlog %>
+      <% } else { %>
+      <!-- Default text if no blog content is available -->
+      Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+      <% } %>
+      <!-- Buttons for editing, saving, canceling, and deleting a blog -->
+      <button class="greenBtn" id="editBtn">Edit</button>
+      <a href="/save" class="greenBtn" id="saveBtn">Save</a>
+      <a href="/cancel" class="redBtn" id="cancelBtn">Cancel</a>
+      <a href="/delete" class="redBtn" id="deleteBtn">Delete</a>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          document.querySelectorAll('.blogBrowse').forEach(function(blog) {
+            const editBtn = blog.querySelector('#editBtn');
+            const saveBtn = blog.querySelector('#saveBtn');
+            const cancelBtn = blog.querySelector('#cancelBtn');
+            const deleteBtn = blog.querySelector('#deleteBtn');
+
+            // Initially hide save and cancel buttons
+            saveBtn.style.display = 'none';
+            cancelBtn.style.display = 'none';
+
+            // Event listener for edit button
+            editBtn.addEventListener('click', function() {
+              editBtn.style.display = 'none';
+              deleteBtn.style.display = 'none';
+              saveBtn.style.display = 'inline-block';
+              cancelBtn.style.display = 'inline-block';
+
+              if (!blog.querySelector('textarea')) {
+                const blogContent = blog.innerText.trim();
+                const textArea = document.createElement('textarea');
+                textArea.name = 'postEdit';
+                textArea.value = blogContent;
+                textArea.classList.add('post-input');
+                const truncatedContent = blogContent.slice(0, -11);
+                textArea.value = truncatedContent;
+                
+                // Clear the blog content and append the textarea
+                blog.innerHTML = '';
+                blog.appendChild(textArea);
+                blog.appendChild(saveBtn);
+                blog.appendChild(cancelBtn);
+              }
+
+                // Add word count display
+                const textarea = blog.querySelector(".post-input");
+                const wordCount = document.createElement("div");
+                wordCount.style.position = "absolute";
+                wordCount.style.bottom = "10px";
+                wordCount.style.right = "10px";
+                wordCount.style.color = "green";
+                blog.style.position = "relative";
+                blog.appendChild(wordCount);
+
+                // Function to update word count
+                const updateWordCount = () => {
+                  const textLength = textarea.value.length;
+                  const remaining = 1100 - textLength;
+                  wordCount.textContent = `${remaining}`;
+                  wordCount.style.color = remaining < 0 ? "red" : "green";
+                };
+
+                // Event listener for textarea input to update word count
+                textarea.addEventListener("input", updateWordCount);
+                updateWordCount();
+
+                // Event listener for save button
+                saveBtn.addEventListener("click", function(event) {
+                  if (textarea.value.length > 1100) {
+                    event.preventDefault();
+                    alert("Your edit exceeds the 1100 character limit.");
+                  } else if (textarea.value.trim().length === 0) {
+                    event.preventDefault();
+                    alert("Your edit cannot be empty.");
+                  } else {
+                    alert("The Edit Feature is still under development and edits are currently not being saved. We're continuously improving and will resolve this soon.");
+                  }
+                });
+            });
+            });
+          });
+
+      </script>
+    </li>
+    <!-- Static blog entries with edit and delete buttons -->
+    <li class="blogBrowse"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      <button class="greenBtn">Edit</button>
+      <button class="redBtn">Delete</button>
+    </li>
+    <li class="blogBrowse">
+      It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+      <button class="greenBtn">Edit</button>
+      <button class="redBtn">Delete</button>
+    </li>
+    <li class="blogBrowse">
+      It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+      <button class="greenBtn">Edit</button>
+      <button class="redBtn">Delete</button>
+    </li>
+  </ul>
+</div>
+
+</body>
+<!-- Include the footer partial -->
+<%- include("partials/footer.ejs") %>
